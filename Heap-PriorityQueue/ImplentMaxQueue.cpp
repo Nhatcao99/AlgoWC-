@@ -3,14 +3,14 @@
 using namespace std;
 
 int maximum(vector<int> &Q){
-    if(Q.length() > 1){
+    if(Q.size() > 1){
         return Q[1];
-    }
+    }return -1;
 }
 
 void max_heapify(vector<int> &Q, int index, int N){
-    int left = 2 * i;
-    int right = 2 * i + 1;
+    int left = 2 * index;
+    int right = 2 * index + 1;
     int max = index;
     if(left <= N && Q[left] > Q[index]){
         max = left;
@@ -35,7 +35,7 @@ void insert_value(vector<int> &Q , int value){
 }
 
 int extract_maximum(vector<int> &Q){ // used for heap sort
-    if(Q.size == 0){
+    if(Q.size() == 0){
         return -1; // there is literally nothing to return
     }
     int max = Q[1];
@@ -48,5 +48,25 @@ int extract_maximum(vector<int> &Q){ // used for heap sort
 int main(){
     int n;
     cin >> n;
-
+    vector<int> Q;
+    Q.push_back(0);
+    for(int i = 0 ; i < n ; i ++){
+        int tmp;
+        cin >> tmp;
+        insert_value(Q,tmp);
+    }
+    int q;
+    cin >> q;
+    for(int i = 0; i < q ; i ++){
+        int tmp;
+        cin >> tmp;
+        if(tmp == 1){
+            int num;
+            cin >> num;
+            insert_value(Q,num);
+        }
+        else{
+            cout << maximum(Q) << "\n";
+        }
+    }
 }
